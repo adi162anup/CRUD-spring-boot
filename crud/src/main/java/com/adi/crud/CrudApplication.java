@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CrudApplication {
 
@@ -17,8 +19,43 @@ public class CrudApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(PlayerDAO playerDAO){
 		return runner -> {
-			createMultiplePlayers(playerDAO);
+//			createMultiplePlayers(playerDAO);
+
+//			readPlayer(playerDAO);
+
+//			readAllPlayers(playerDAO);
+
+			readPlayerByAge(playerDAO);
 		};
+	}
+
+	private void readPlayerByAge(PlayerDAO playerDAO) {
+		List<Player> tempPlayer = playerDAO.findByAge(25);
+
+		for(Player myPlayer : tempPlayer){
+			System.out.println(myPlayer);
+		}
+
+	}
+
+	private void readAllPlayers(PlayerDAO playerDAO) {
+
+		System.out.println("Retrieving all players in the database in the order of their first names");
+		List<Player> tempPlayers = playerDAO.findAll();
+		for(Player myPlayer : tempPlayers){
+			System.out.println(myPlayer);
+		}
+	}
+
+	private void readPlayer(PlayerDAO playerDAO) {
+		Player tempPlayer = new Player("Stefanos","Tsitsipas",25);
+		playerDAO.save(tempPlayer);
+
+		int id = tempPlayer.getId();
+
+		System.out.println("Retrieving player with ID: " + id);
+		Player myPlayer = playerDAO.findByID(id);
+		System.out.println(myPlayer);
 	}
 
 	private void createMultiplePlayers(PlayerDAO playerDAO) {
