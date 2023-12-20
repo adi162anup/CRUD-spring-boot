@@ -16,4 +16,8 @@ public interface PlayerDAO {
 
     void update(Player thePlayer);
 
+    void delete(Player thePlayer);
+
+    int deleteAll();
+
 }

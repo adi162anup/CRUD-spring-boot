@@ -27,8 +27,26 @@ public class CrudApplication {
 
 //			readPlayerByAge(playerDAO);
 
-			updatePlayer(playerDAO);
+//			updatePlayer(playerDAO);
+
+//			deletePlayer(playerDAO);
+
+			deleteAllPlayers(playerDAO);
 		};
+	}
+
+	private void deleteAllPlayers(PlayerDAO playerDAO) {
+		System.out.println("Deleting all the players from the database");
+		int numberOfRows = playerDAO.deleteAll();
+		System.out.println(numberOfRows + " deleted successfully");
+	}
+
+	private void deletePlayer(PlayerDAO playerDAO) {
+		int playerID = 5;
+		System.out.println("Finding player of ID: " + playerID + " to be deleted");
+		Player tempPlayer = playerDAO.findByID(playerID);
+		playerDAO.delete(tempPlayer);
+		System.out.println(tempPlayer.getFirstName() + " " + tempPlayer.getLastName() + " deleted successfully");
 	}
 
 	private void updatePlayer(PlayerDAO playerDAO) {

@@ -48,4 +48,18 @@ public class PlayerDAOImpl implements PlayerDAO{
     public void update(Player thePlayer) {
         entityManager.merge(thePlayer);
     }
+
+    @Transactional
+    @Override
+    public void delete(Player thePlayer) {
+        Player myPlayer = entityManager.merge(thePlayer);
+        entityManager.remove(myPlayer);
+    }
+
+    @Transactional
+    @Override
+    public int deleteAll() {
+        int numberOfRows = entityManager.createQuery("DELETE FROM Player").executeUpdate();
+        return numberOfRows;
+    }
 }
