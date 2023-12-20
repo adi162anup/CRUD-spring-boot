@@ -42,4 +42,10 @@ public class PlayerDAOImpl implements PlayerDAO{
         theQuery.setParameter("theData",theAge);
         return theQuery.getResultList();
     }
+
+    @Transactional
+    @Override
+    public void update(Player thePlayer) {
+        entityManager.merge(thePlayer);
+    }
 }

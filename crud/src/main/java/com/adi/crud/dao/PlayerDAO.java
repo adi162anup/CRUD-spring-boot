@@ -14,4 +14,6 @@ public interface PlayerDAO {
 
     List<Player> findByAge(Integer theAge);
 
+    void update(Player thePlayer);
+
 }

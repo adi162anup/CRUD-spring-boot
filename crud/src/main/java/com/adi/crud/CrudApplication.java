@@ -25,8 +25,20 @@ public class CrudApplication {
 
 //			readAllPlayers(playerDAO);
 
-			readPlayerByAge(playerDAO);
+//			readPlayerByAge(playerDAO);
+
+			updatePlayer(playerDAO);
 		};
+	}
+
+	private void updatePlayer(PlayerDAO playerDAO) {
+		int playerID = 3;
+		System.out.println("Finding player of ID: " + playerID);
+		Player tempPlayer = playerDAO.findByID(playerID);
+		tempPlayer.setFirstName("D");
+		playerDAO.update(tempPlayer);
+		System.out.println("First Name of player of ID: " + playerID + " is updated");
+
 	}
 
 	private void readPlayerByAge(PlayerDAO playerDAO) {
